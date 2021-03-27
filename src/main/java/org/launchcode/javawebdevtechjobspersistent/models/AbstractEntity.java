@@ -3,24 +3,25 @@ package org.launchcode.javawebdevtechjobspersistent.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
+
     @Id @GeneratedValue
     private int id;
 
-    @NotBlank @Max(255)
+    @NotBlank @Size(min = 1, max = 65, message = "Employer Name must be less than 65 characters.")
     private String name;
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
